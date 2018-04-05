@@ -1,0 +1,14 @@
+ <div id="nav-displacement" ng-controller="GroupController" ng-cloak>
+		<form class="form-container" ng-submit="submitForm(groupsearch)">
+			<input class="search_input main_search_input" ng-model="groupsearch" type="text" placeholder="&#xF002; Search Groups..."  style="font-family:Open Sans, FontAwesome" />
+		</form>
+		 <div class="people-results group-bundle" ng-repeat="group in results.groups">
+				<div class="result-author" style="border-top: 3px solid #96bd81;">
+					<div>
+						<h3><a href="community.html#/?id={{group.group_id}}">{{group.name}} <i>@{{group.desc}}</i></a></h3>
+						<span ng-show="{{group.subscribers > 1}}">{{group.subscribers}} Subscribers</span>
+					</div>
+					<a href=""><span><i class="fa fa-envelope-square"></i> Subscribe</span></a>
+				</div>
+        </div>
+</div>

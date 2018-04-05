@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="Acemate">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />  
+		<link rel="stylesheet" type="text/css" href="css/normalizer.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.min.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <title>Acemate - Profile</title>
+    </head>
+    <body id="nav-displacement" ng-controller="ProfileController" ng-cloak>
+		<ng-include src="'includes/header-back.html'"></ng-include>
+		<ul class="second_nav">
+			<li class="active"><a href="#">Newest</a></li>
+			<li><a href="#">Most Loved</a></li>
+			<li><a href="#">Top Comments</a></li>
+		</ul>
+		<div class="profile_author second_nav_offset">
+				<img ng-src="http://media.acemate.us/avatar/{{feed.user[0].avatar_source}}" alt="">
+				<div>
+					<h3>{{feed.user[0].name}}</h3>
+					<i class="author-handle">@{{feed.user[0].handle}}</i>
+					<a href=""><span>+ follow</span></a>
+				</div>
+				<ul>
+				<li ng-controller="MyCtrl as ctrl"><a href="" ng-click="ctrl.showModal()" data-user="{{feed.user[0].id}}"><span class="about_me_bar" style="background:rgb({{feed.user[0].profile_color}});border-right:5px solid rgba({{feed.user[0].profile_color}},0.9);">about me</span></a></li>
+				<li><a href="settings.html"><span class="about_me_bar" style="background:rgba(25,25,25,0.7);border-right:5px solid rgba(25,25,25,0.9);"> <i class="fa fa-cog"></i> Settings</span></a></li>
+        </div>
+		<ul class="profile_stats">
+			<li>{{feed.user[0].post_count}} <span>Posts</span></li>
+			<li>{{feed.user[0].followers}} <span>Followers</span></li>
+			<li>{{feed.user[0].friends}} <span>Friends</span></li>
+		</ul>
+		<div class="profile_collage">
+			<div class="profile_featured" ng-show="feed.featured[0].post_id">
+				<a href="profile_post.html#/?id={{feed.featured[0].post_id}}"><img ng-src="http://media.acemate.us/feed/{{feed.featured[0].source}}" alt=""></a>
+				<p>{{feed.featured[0].likes}} <i class="fa fa-heart"> &nbsp;</i></p>
+			</div>
+			<ul class="profile_collage_container">
+				<li ng-repeat="image in feed.posts">
+					<a href="profile_post.html#/?id={{image.post_id}}"><img ng-src="http://media.acemate.us/thumb/{{image.source}}" alt=""></a>
+					<p>{{image.likes}} <i class="fa fa-heart"> &nbsp;</i></p>
+				</li>
+			</ul>
+		</div>
+		<button class="load_more profile_load">Load More</button>
+		<div class="slider_interests profile_slider">
+			<div>
+				<h3>{{feed.user[0].name}}'s Interests</h3>
+				<a href="interests.html#/?profile_id={{feed.user[0].id}}">See More</a>
+			</div>
+			<ul>
+				<li ng-repeat="slider in feed.interests"><a href="interests-feed.html#/?hashtag={{slider[0].hashtag}}&starter_id={{slider[0].post_id}}"><img ng-src="http://media.acemate.us/thumb/{{slider[0].source}}" alt=""><span>#{{ slider[0].hashtag | limitTo: 12 }}{{slider[0].hashtag.length > 12 ? '&hellip;' : ''}}</span></a></li>
+			</ul>
+		</div>
+		<ng-include src="'includes/footer.html'"></ng-include>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/fastclick.js"></script>
+		<script src="lib/ngCordova/dist/ng-cordova.js"></script> <script src="js/angular-pull-to-refresh.js"></script>
+  
+		<script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>

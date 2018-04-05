@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="Acemate">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <META HTTP-EQUIV="Cache-Control" CONTENT ="no-cache">
+		<link rel="stylesheet" type="text/css" href="css/normalizer.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Acemate - Home</title>
+    </head>
+    <body id="homescreen" ng-controller="HomeController" ng-cloak>
+        <img id="login-logo" src="img/logo-login.png" alt=""/>
+		
+		<div class="login-register" ng-init="social = { type: 'main'}">
+		<span>{{errormsg}}</span>
+			<ul class="user_login" ng-if="social.type == 'main'">
+								<li><input type="text" ng-model="login.email" value="{{$storage.handle}}" placeholder="Username/Email Address"/></li>
+				<li><input type="text" ng-model="login.password" placeholder="Password"/></li>
+				<li><button ng-click="login()"><i class="fa fa-sign-in"></i> Sign in to Acemate</button></li>
+			</ul>
+			<ul class="user_login" ng-if="social.type == 'register'">
+								<li><input type="text" ng-model="login.email" value="" placeholder="Email Address"/></li>
+				<li><input type="text" ng-model="login.email" value="" placeholder="Username"/></li>
+				<li><input type="text" ng-model="login.password" placeholder="Password"/></li>
+				<li><button ng-click="login()"><i class="fa fa-sign-in"></i> Sign in to Acemate</button></li>
+			</ul>
+			<ul ng-if="social.type == 'social'">
+				<li><button><i class="fa fa-twitter"></i> Sign in with twitter </button></li>
+				<li><button><i class="fa fa-facebook"></i> Sign in with facebook </button></li>
+				<li ng-click="social.type='main'"><button><i class="fa fa-envelope-o"></i> Sign in with email</button></li>
+			</ul>
+			<li class="social_highlight" ng-if="social.type == 'main'" ng-click="social.type='social'"><a href="#">Login With Social Media</a></li>
+			<li>Don't Have an Account? <a href="home.html">Join Now</a></li>
+		</div>
+		<ul id="home-footer-stats">
+		  <li><span ng-bind="users || 100000000 | number"></span> <br>Active Users</li>
+		  <li><span ng-bind="interests || 90000001 | number"></span> <br>Interests</li>
+		  <li>1 Large<br> Global Community</li>
+		</ul>
+		
+		<script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/fastclick.js"></script>
+		<script type="text/javascript" src="js/ng-cordova.min.js"></script>
+		<script src="js/angular-pull-to-refresh.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>

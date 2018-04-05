@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="Acemate">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/normalizer.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Acemate - Chat</title>
+		<style>
+		.send_message, body {
+		 	background: url('img/new_year_background.png') repeat;
+		}
+		body {
+		padding-bottom: 3vmax;
+		}
+		</style>
+    </head>
+    <body id="nav-displacement" ng-controller="ChatController" ng-cloak>
+		<div class="headerlogo" style="background-color:rgb({{chatroll[chatroll.length-1].profile_color}})">
+			<a href="" onclick="window.history.back()"><i class="fa fa-arrow-left"></i></a>
+			<h3>{{chatroll[chatroll.length-1].name}} Says</h3>
+		</div>
+		<ul class="chat_roll">
+			<li ng-repeat="message in chatroll">
+				<img src="http://media.acemate.us/avatar/{{message.avatar_source}}" alt=""/>
+				<div>
+					<p ng-bind-html="message.message| linkify">  </p>
+					<span class="timestamp">{{message.date_created | fromNow}}</span>
+				</div>
+			</li>
+		</ul>
+		<ul class="send_message">
+			<li><a href=""><i class="fa fa-paperclip"></i></a></li>
+			<li><input type="text" name="message" placeholder="Send Message..."></li>
+			<li><a href=""><i class="fa fa-paper-plane"></i></a></li>
+		</ul>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/angular/angular.min.js"></script>
+		<script type="text/javascript" src="js/fastclick.js"></script><script src="lib/ngCordova/dist/ng-cordova.js"></script> <script src="js/angular-pull-to-refresh.js"></script>
+  
+		<script type="text/javascript" src="js/cordova.android.js"></script>
+		<script type="text/javascript" src="js/moment.js"></script>
+		<script type="text/javascript" src="jsangular/angular-moment.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>

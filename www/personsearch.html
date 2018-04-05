@@ -1,0 +1,20 @@
+    <div id="nav-displacement" ng-controller="PersonController" ng-cloak>
+		<form class="form-container" ng-submit="submitForm(personsearch)">
+			<input class="search_input main_search_input" ng-model="personsearch" type="text" placeholder="&#xF002; Search People..."  style="font-family:Open Sans, FontAwesome" />
+		</form>
+        <div class="people-results" ng-repeat="person in results">
+            
+				<div class="result-author" style="border-top: 3px solid rgb({{person.user[0].profile_color}});">
+					<a href="profile.html#/?id={{person.user[0].handle}}"><img src="http://media.acemate.us/avatar/{{person.user[0].avatar_source}}" alt=""/></a>
+					<div>
+					<a href="profile.html#/?id={{person.user[0].handle}}">	<h3>{{person.user[0].name}} <i class="author-handle">@{{person.user[0].handle}}</i></h3></a>
+						<span>{{person.user[0].post_count}} Posts | {{person.user[0].followers}} Followers | {{person.user[0].friends}} Friends</span>
+					</div>
+					<a href=""><span style="background-color:rgb({{person.user[0].profile_color}})">+ follow</span></a>
+				</div>
+			
+			<ul>
+				<li ng-repeat="images in person.images"><a href="profile_post.html#/?id={{images.post_id}}"><img src="http://media.acemate.us/thumb/{{images.source}}" alt=""/></a></li>
+			</ul>
+        </div>
+	</div>

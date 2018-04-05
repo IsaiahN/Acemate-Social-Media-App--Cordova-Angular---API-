@@ -1,0 +1,15 @@
+<div class="profile-modal" ng-controller="AboutMeController">
+	<a class="modal-close" href ng-click="modal.closeMe()"><i class="fa fa-times"></i></a>
+	<div>
+		<img src="http://media.acemate.us/avatar/{{about[0].avatar_source}}" alt=""/>
+		<h3>{{about[0].name}}</h3>
+		<i class="author-handle">@{{about[0].handle}}</i>
+		<p class="author-bio">{{about[0].bio}}</p>
+		<span><i class="fa fa-globe"></i><a href="{{about[0].website}}"> Website</a></span>
+		<span class="ml-social-facebook"><i class="fa fa-facebook"></i><a href="http://facebook.com/{{about[0].facebook}}"> {{about[0].facebook}}</a></span>
+		<span class="ml-social-twitter"><i class="fa fa-twitter"></i><a href="http://twitter.com/{{about[0].twitter}}"> {{about[0].twitter}}</a></span>
+		<span class="ml-social-pinterest"><i class="fa fa-pinterest"></i><a href="http://pinterest.com/{{about[0].pinterest}}"> {{about[0].pinterest}}</a></span>
+		<span class="ml-social-instagram" ><i class="fa fa-instagram"></i><a href="http://instagram.com/{{about[0].instagram}}"> {{about[0].instagram}}</a></span>
+		<a href="chat.html?user_id=you&profile_id={{about[0].user_id}}"><span style="color:rgb({{about[0].color}});border-color:rgb({{about[0].color}});"><i class="fa fa-envelope-o"></i> Message</span></a>
+	</div>
+</div>

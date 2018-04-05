@@ -1,0 +1,27 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.socialnetwork.acemate"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.socialnetwork.acemate"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.socialnetwork.acemate"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.socialnetwork.acemate"
+        },
+        "com.synconset.imagepicker": {
+            "PACKAGE_NAME": "com.socialnetwork.acemate"
+        }
+    },
+    "dependent_plugins": {}
+}

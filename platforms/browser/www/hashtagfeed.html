@@ -1,0 +1,8 @@
+    <div id="nav-displacement"  ng-controller="HashtagListController" ng-cloak>
+		<form class="form-container" ng-submit="submitForm(hashsearch);">
+			<input class="search_input main_search_input" ng-model="hashsearch" type="text" placeholder="&#xF002; Search Interests..."  style="font-family:Open Sans, FontAwesome" />
+		</form>
+		<ul class="hashtag-results hashtag_feed_slider">
+			<li ng-repeat="hashtag in hashtagfeed"><a href="interests-feed.html#/?hashtag={{hashtag.hashtag}}&starter_id={{hashtag.list[0].post_id}}"><img src="http://media.acemate.us/feed/{{hashtag.list[0].source}}" alt=""/><span><strong>#{{hashtag.hashtag}}</strong></span></a></li>
+        </ul>
+	</div>

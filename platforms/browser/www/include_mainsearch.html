@@ -1,0 +1,87 @@
+		<div id="mainsearch" ng-controller="InterestsController" ng-cloak>
+			<form class="form-container" ng-submit="submitForm(mainsearch)">
+				<input ng-model="mainsearch" class="search_input main_search_input" type="text" placeholder="&#xF002; Search Acemate..." style="font-family:Open Sans, FontAwesome" />
+			</form>
+			<div ng-if="!results.result_type">
+				<div class="slider_interests">
+					<h3>What's Trending</h3>
+					<ul>
+						<li ng-repeat="slider in results.trending_interests">
+							<a href="interests-feed.html#/?hashtag={{slider[0].hashtag}}&starter_id={{slider[0].post_id}}">
+								<img src="http://media.acemate.us/thumb/{{slider[0].source}}" alt="">
+								<!--<ng-tag ng-show="slider.type == video"><img src="{{slider.thumb_source}}" alt=""></ng-tag>-->
+								<span>#{{ slider[0].hashtag | limitTo: 12 }}{{slider[0].hashtag.length > 12 ? '&hellip;' : ''}}</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<hr>
+				<h3>Based On Your Interests</h3>
+				<div class="image_collage" ng-repeat="collage in results.collage">
+					<div>
+						<span class="love-count-bar">#{{collage.hashtag}}</span>
+						<a class="see_more_link" href="interests-feed.html#/?hashtag={{collage.hashtag}}">See More</a>
+					</div>
+					<ul class="collage_container">
+						<li>
+							<ul>
+								<li class="large_collage" ng-repeat="largeimage in collage.largeimage"><a href="profile_post.html#/?id={{largeimage.post_id}}"><img ng-src="http://media.acemate.us/feed/{{largeimage.source}}" color-thief color-thief-dominant="colors.myDominantColor"  alt=""></a></li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li class="small_collage" ng-repeat="smallimage in collage.smallimage">
+								<a href="profile_post.html#/?id={{smallimage.post_id}}">
+								<img src="http://media.acemate.us/thumb/{{smallimage.source}}" alt="">
+								<!--
+								<a ng-show="smallimage.type == photo" href="profile_post.html?id={{smallimage.post_id}}"><img src="http://media.acemate.us/feed/{{smallimage.source}}" alt=""></a>
+								<a ng-show="smallimage.type == video" href="profile_post.html?id={{smallimage.post_id}}"><img src="http://media.acemate.us/feed/{{smallimage.thumb_source}}" alt=""></a>
+								-->
+								</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="people-results" ng-if="results.result_type == 'person'" ng-repeat="person in results">
+				<div class="result-author" style="border-top: 3px solid #96bd81;">
+					<a href="profile.html#/?id={{person.user[0].id}}"><img src="http://media.acemate.us/avatar/{{person.user[0].avatar_source}}" alt=""/></a>
+					<div>
+					<a href="profile.html#/?id={{person.user[0].id}}">	<h3>{{person.user[0].name}} <i class="author-handle">@{{person.user[0].handle}}</i></h3></a>
+						<span>{{person.user[0].post_count}} Posts | {{person.user[0].followers}} Followers | {{person.user[0].friends}} Friends</span>
+					</div>
+					<a href=""><span>+ follow</span></a>
+				</div>
+				<ul>
+					<li ng-repeat="images in person.images"><a href="profile_post.html#/?id={{images.post_id}}"><img src="http://media.acemate.us/thumb/{{images.source}}" alt=""/></a></li>
+				</ul>
+			</div>
+			
+			<div class="hashtag-results" ng-if="results.result_type == 'hashtag'" ng-repeat="hashtag in results">
+				<div class="result-hashtag" style="border-bottom: 2px solid #bdd884;">
+					<h3>#{{hashtag.hashtag}}</h3>	
+				</div>
+				<ul>
+					<li ng-repeat="images in hashtag.list"><a href="interests-feed.html#/?hashtag={{hashtag.hashtag}}&starter_id={{images.post_id}}"><img src="http://media.acemate.us/thumb/{{images.source}}" alt=""/></a></li>
+				</ul>
+			</div>
+			
+			<div class="people-results group-bundle" ng-if="results.result_type == 'group'" ng-repeat="group in results.groups">
+				<div class="result-author" style="border-top: 3px solid #96bd81;">
+					<a href="community.html#/?id={{group.group_id}}"><img src="http://media.acemate.us/group-avatar/{{group.source}}" alt=""/></a>
+					<div>
+						<h3><a href="community.html">{{group.name}} <i class="author-handle">@{{group.desc}}</i></a></h3>
+						<span ng-show="{{group.subscribers > 1}}">{{group.subscribers}} Subscribers</span>
+					</div>
+					<a href=""><span><i class="fa fa-envelope-square"></i> Subscribe</span></a>
+				</div>
+				<ul>
+					<li ng-repeat="images in group.collage[0]"><a href="community-posts.html?group_post_id={{images.id}}"><img src="http://media.acemate.us/thumb/{{images.source}}" alt=""/></a></li>
+				</ul>
+			</div>
+			
+			<div ng-if="results.result_type == 'not_found'">
+				<h1 class="not_found"> Hmm.... No results Found D:</h1>
+			</div>
+			
+		</div>

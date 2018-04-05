@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="Acemate">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/normalizer.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Acemate- Profile Post</title>
+    </head>
+    <body id="one-nav-displacement" ng-controller="UpdateSingleController" ng-cloak>
+		<ng-include src="'includes/header-back.html'"></ng-include>
+		<div class="update-section" ng-repeat="update in section.mainfeed">
+            <div class="update-author">
+				<a href="profile.html#/?id={{update.user[0].handle}}"><img ng-src="http://media.acemate.us/avatar/{{update.user[0].avatar_source}}" alt=""/>
+				<div>
+					<h3>{{update.user[0].name}} <i class="author-handle">@{{update.user[0].handle}}</i></h3>
+					<span>{{update.date_created | fromNow}}</span>
+				</div>
+				</a><button class="more-menu"><i class="fa fa-ellipsis-v"></i></button>
+            </div>
+			<div class="update-content">
+				<img ng-src="http://media.acemate.us/feed/{{update.source}}" alt=""/>
+				<p>{{update.likes}} <i class="fa fa-heart"> &nbsp;</i></p>
+			</div>
+			<div class="update-comments">
+				<p>
+					<strong><a href="profile.html#/?user={{update.user[0].handle}}">@{{update.user[0].handle}}</a></strong> <description ng-bind-html="update.description | linkify">
+				</p>
+				<span class="love-count-bar" style="background:rgb({{update.user[0].profile_color}});" ng-show="{{update.comments.length > 1}}"><i class="fa fa-comments"></i> {{update.comments.length}} Comment<span ng-show="{{update.comments.length > 1}}">s</span></span>
+				<!--<span class="love-count-bar right-share" style="background:rgb({{update.user[0].profile_color}});"><i class="fa fa-retweet"> &nbsp;</i>Share</span>-->
+				<ul>
+					<li ng-repeat="comment in update.comments">
+						<strong><a href="profile.html#/?user={{comment.handle}}">@{{comment.handle}}</a></strong> <comment ng-bind-html="comment.response | linkify">  </comment>
+					</li>
+				</ul>
+			</div>
+        </div>
+		<ul class="send_message send_comment">
+			<li><input type="text" name="message" placeholder="Comment..." ng-model="userComment"></li>
+			<li><a href="" ng-click="sendComment()"><i class="fa fa-paper-plane"></i></a></li>
+		</ul>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/fastclick.js"></script>
+		<script src="lib/ngCordova/dist/ng-cordova.js"></script> <script src="js/angular-pull-to-refresh.js"></script>
+  
+		<script type="text/javascript" src="js/moment.js"></script>
+		<script type="text/javascript" src="js/angular-moment.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="Acemate">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/normalizer.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Acemate- community Post</title>
+    </head>
+    <body id="nav-displacement" ng-controller="CommunitySinglePostController" ng-cloak>
+		<ng-include src="'includes/header-back.html'"></ng-include>
+		<div class="update-section" ng-repeat="update in section.mainfeed">
+            <div class="update-author">
+				<img src="http://media.acemate.us/avatar/{{update.user[0].avatar_source}}" alt=""/>
+				<div>
+					<h3>{{update.user[0].name}} <i class="author-handle">@{{update.user[0].handle}}</i></h3>
+					<span>{{update.date_created}}</span>
+				</div>
+				<button class="more-menu"><i class="fa fa-ellipsis-v"></i></button>
+            </div>
+			<!--<div class="update-content">
+				<img src="http://media.acemate.us/feed/{{update.source}}" alt=""/>
+				<p>{{update.likes}} <i class="fa fa-heart"> &nbsp;</i></p>
+			</div>-->
+			<div class="update-comments">
+				<p class="community-user-post">
+					<strong>@{{update.user[0].handle}}</strong> <description ng-bind-html="update.description | linkify">
+				</p>
+				<span class="love-count-bar"><i class="fa fa-comments"></i> {{update.comments.length}} Response<span ng-show="{{update.comments.length > 1}}">s</span></span>
+				<span class="love-count-bar right-likes">{{update.likes}} <i class="fa fa-heart"> &nbsp;</i>Likes</span>
+				<ul>
+					<li ng-repeat="comment in update.comments">
+						<strong>@{{comment.handle}}</strong> <comment ng-bind-html="comment.response | linkify">  </comment>
+					</li>
+				</ul>
+			</div>
+        </div>
+		<ul class="send_message send_comment">
+			<li><input type="text" name="message" placeholder="Comment..."></li>
+			<li><a href=""><i class="fa fa-paper-plane"></i></a></li>
+		</ul>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/fastclick.js"></script>
+		<script src="lib/ngCordova/dist/ng-cordova.js"></script> <script src="js/angular-pull-to-refresh.js"></script>
+  
+		<script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
